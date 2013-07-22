@@ -13,6 +13,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'omniauth-github'
+gem 'slim-rails'
 
 group :development, :test do
   gem 'rspec-rails'
