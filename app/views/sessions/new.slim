@@ -1,1 +1,11 @@
-h1= "sign in page"
+= simple_form_for @user, url: sessions_path, html: {class: 'form-horizontal'} do |f|
+  = f.error_notification
+
+  legend= "登录"
+
+  .inputs
+    = f.input :name, label: User.human_attribute_name(:name)
+    = f.input :password, label: User.human_attribute_name(:password)
+
+  .form-actions
+    = f.submit t('sign_in'), class: 'btn-primary'

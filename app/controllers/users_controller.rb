@@ -1,11 +1,26 @@
 class UsersController < ApplicationController
+  before_action :find_user
 
-  def login
-    @user = User.find_by_email(params[:email])
-    if @user.password == params[:password]
-      session[:user] = @user.id
+  def edit
+  end
+
+  def update
+    if @user.update_attributes(user_params)
+      self.current_user = @user
+      redirect_to root_path
     else
-      redirect_to home_path
+      redirect_to edit_user_path(@user)
     end
+  end
+
+  private
+  def find_user
+    @user ||= User.find(params[:id])
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :nickname)
   end
 end

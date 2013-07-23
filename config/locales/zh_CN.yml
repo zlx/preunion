@@ -2,3 +2,7 @@ zh_CN:
   site_name: "工会"
   sign_in: "登录"
   github_sign_in: "github登录"
+  user_info: "个人中心"
+  edit_info: "编辑信息"
+  sign_out: "退出"
+
