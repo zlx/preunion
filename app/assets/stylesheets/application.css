@@ -14,7 +14,7 @@
  *= require_tree .
  */
 
-.main {
-  width: 1080px;
-  margin: 0 auto;
+body {
+  position: relative;
+  padding-top: 40px;
 }

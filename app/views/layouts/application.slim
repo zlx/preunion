@@ -6,11 +6,8 @@ html
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     title Preunion
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   body
-    #warp
-      #header
-        = render 'shared/menu'
-      #content.main
-        = yield
+    = render 'shared/menu'
+    = yield
+    = javascript_include_tag "application", "data-turbolinks-track" => true
