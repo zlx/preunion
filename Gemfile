@@ -14,7 +14,6 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'omniauth-github'
 gem 'slim-rails'
-gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'

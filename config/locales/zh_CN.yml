@@ -1,2 +1,4 @@
 zh_CN:
   site_name: "工会"
+  sign_in: "登录"
+  github_sign_in: "github登录"

@@ -1,6 +1,5 @@
 ul.nav.pills.pull-right
   - if current_user
-    = link_to 0, root_path,  :class=>"message-#{current_user.unread_messages.size==0 ? 'box':'notice'}"
     li.dropdown
       =link_to '/account', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
         = current_user.name
@@ -12,6 +11,5 @@ ul.nav.pills.pull-right
         li= link_to t('devise.navigation.sign_out'), destroy_user_session_path, method: :delete
 
   - else
-    /li= link_to 'Github Login', user_omniauth_authorize_path(:github)
-    /*li= link_to t('devise.navigation.sign_up'), new_user_registration_path*/
-    li= link_to t('devise.navigation.sign_in'), new_user_session_path
+    li= link_to t('github_sign_in'), "/auth/github"
+    li= link_to t('sign_in'), new_session_path
