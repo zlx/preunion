@@ -5,4 +5,10 @@ zh_CN:
   user_info: "个人中心"
   edit_info: "编辑信息"
   sign_out: "退出"
+  sign_out_success: '退出成功'
+  auth_success: '验证成功，请修改初始密码(666666)'
+  sign_in_success: '登录成功'
+  sign_in_fail: '登录失败'
+  edit_info_success: '修改成功'
+  edit_info_fail: '修改失败'
 

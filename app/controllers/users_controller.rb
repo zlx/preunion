@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       self.current_user = @user
-      redirect_to root_path
+      redirect_to root_path, notice: t('edit_info_success')
     else
-      redirect_to edit_user_path(@user)
+      redirect_to edit_user_path(@user), alert: t('edit_info_fail')
     end
   end
 

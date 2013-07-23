@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def auth
     @user = User.find_or_create_from_auth_hash(auth_hash)
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user), notice: t('auth_success')
   end
 
   def new
@@ -14,15 +14,15 @@ class SessionsController < ApplicationController
     @user = User.find_by(name: user_params[:name])
     if @user && @user.authenticate(user_params[:password])
       self.current_user = @user
-      redirect_to root_path
+      redirect_to root_path, notice: t('sign_in_success')
     else
-      redirect_to new_session_path
+      redirect_to new_session_path, alert: t('sign_in_fail')
     end
   end
 
   def destroy
     self.current_user = nil
-    redirect_to root_path
+    redirect_to root_path, notice: t('sign_out_success')
   end
 
   protected
