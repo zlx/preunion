@@ -1,6 +1,6 @@
 Preunion::Application.routes.draw do
 
-  get '/auth/github/callback', to: 'sessions#create'
+  get '/auth/github/callback', to: 'sessions#auth'
   resources :users
   resources :sessions
 
