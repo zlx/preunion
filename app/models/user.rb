@@ -3,7 +3,10 @@ class User < ActiveRecord::Base
   include BCrypt
 
   def self.find_or_create_from_auth_hash auth_hash
-    p auth_hash
+    self.where(uid: auth_hash.uid, provider: :github).
+         first_or_create(name: auth_hash.extra.raw_info.name,
+                         email: auth_hash.info.email,
+                         nickname: auth_hash.info.nickname)
   end
 
   def password
