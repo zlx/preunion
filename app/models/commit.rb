@@ -5,7 +5,6 @@ class Commit < ActiveRecord::Base
     def fetch_bay6_commits
       client = Octokit::Client.new(login: Setting.bay6_username, password: Setting.bay6_password)
       client.repos('bay6').each do |repo|
-        p repo.id
         fetch_commits_from repo
       end
     end
