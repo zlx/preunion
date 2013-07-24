@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_secure_password
-
   validates :name, :email, presence: true, uniqueness: true
 
   def self.find_or_create_from_auth_hash auth_hash

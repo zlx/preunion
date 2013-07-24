@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 
   def auth
     @user = User.find_or_create_from_auth_hash(auth_hash)
+    self.current_user = @user
     redirect_to edit_user_path(@user), notice: t('auth_success')
   end
 
