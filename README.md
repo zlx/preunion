@@ -25,7 +25,7 @@ union将划分为不同等级小任务，反复练习重构后会重写到主uni
 - [] 生成成员，总经验值排名
 - [] 生成成员，成长值排名，月份，周，迭代周期排名
 
-如何贡献
+## 如何贡献
 
 1. Fork it
 2. Create your feature branch (git checkout -b my-new-feature)
