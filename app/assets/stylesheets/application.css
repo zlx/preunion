@@ -19,3 +19,9 @@ body {
   padding-top: 60px;
   padding-bottom: 40px;
 }
+
+.main {
+  width: 1080px;
+  margin: 0 auto;
+}
+
