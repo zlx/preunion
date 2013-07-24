@@ -15,6 +15,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'omniauth-github'
 gem 'slim-rails'
 gem 'simple_form', git: 'git@github.com:plataformatec/simple_form.git'
+gem 'octokit'
+gem 'rails-settings-cached'
 
 group :development, :test do
   gem 'rspec-rails'
