@@ -2,11 +2,12 @@
 
 FactoryGirl.define do
   factory :user do
-    name "MyString"
+    sequence(:name){|n| "MyString#{n}"}
     email "MyString"
-    password_hash "MyString"
+    password 666666
+    password_confirmation 666666
     nickname "MyString"
     grade_id 1
-    role_id ""
+    role_id 1
   end
 end
