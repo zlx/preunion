@@ -14,15 +14,16 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'omniauth-github'
 gem 'slim-rails'
-gem 'simple_form', git: 'git@github.com:plataformatec/simple_form.git'
+gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'octokit'
 gem 'rails-settings-cached'
+gem 'rails4_upgrade'
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'jasmine'
   gem 'factory_girl_rails'
-  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+  gem 'annotate', github: 'ctran/annotate_models'
 end
 
 group :doc do

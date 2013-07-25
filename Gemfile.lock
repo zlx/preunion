@@ -197,6 +197,9 @@ GEM
       sprockets-rails (~> 2.0.0)
     rails-settings-cached (0.3.1)
       rails (>= 4.0.0.beta1)
+    rails4_upgrade (0.5.0)
+      bundler (>= 1.2.2)
+      terminal-table (>= 1.4.5)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
@@ -259,6 +262,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     temple (0.6.5)
+    terminal-table (1.4.5)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -306,6 +310,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.0.0)
   rails-settings-cached
+  rails4_upgrade
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
