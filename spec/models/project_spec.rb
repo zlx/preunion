@@ -1,5 +1,31 @@
 require 'spec_helper'
 
 describe Project do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context "#init_from_commits" do
+    let!(:commit) {FactoryGirl.create(:commit)}
+    let!(:user) {FactoryGirl.create(:user, uid: commit.user_uid)}
+    let!(:repository) {FactoryGirl.create(:repository, id: commit.repository_id)}
+
+    before do
+      Project.init_from_commits
+    end
+
+    subject{ Project.last }
+
+    its(:name){ should == repository.name }
+    its(:user_id) { should == user.id }
+    its(:website) { should == repository.html_url }
+    its(:description) { should == repository.description }
+    its(:grade_id) { should == 1 }
+    its(:started_at) { should = commit.commit_date }
+
+    it "should update started_at when has before commit" do
+      longlong_ago_commit = FactoryGirl.create(:commit, commit_date: 1.year.ago, 
+                                               repository_id: repository.id, user_uid: user.uid)
+
+      Project.init_from_commits
+      subject.reload.started_at.should == longlong_ago_commit.commit_date.to_date
+    end
+  end
 end
