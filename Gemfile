@@ -18,6 +18,7 @@ gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'octokit'
 gem 'rails-settings-cached'
 gem 'rails4_upgrade'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'rspec-rails'

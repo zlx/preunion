@@ -1,6 +1,6 @@
 module ApplicationHelper
   def current_user
-    User.find_by_id(session[:user])
+    User.where(id: session[:user]).first
   end
 
   ALERT_TYPES = [:error, :info, :success, :warning]
@@ -21,5 +21,10 @@ module ApplicationHelper
       end
     end
     flash_messages.join("\n").html_safe
+  end
+
+  def markdown content
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+    @Markdown.render content
   end
 end
