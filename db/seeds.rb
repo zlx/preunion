@@ -7,14 +7,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # set admin user
-#User.where(name: 'admin', email: 'admin@example').
-     #first_or_create(password: 'password', password_confirmation: 'password')
+role = Role.find_or_create_by(name: 'admin')
+User.where(name: 'admin', email: 'admin@example').
+     first_or_create(password: 'password', password_confirmation: 'password', roles: [role])
 
 # setting bay6 github username and password
-
 Setting.bay6_username = 'ken0'
 Setting.bay6_password = 'password9'
 
-
-Repository.init_from_github
-
+Grade.where(name: '无业游民').first_or_create(weights: 1)
+Grade.where(name: '初级').first_or_create(weights: 2)
+Grade.where(name: '中级').first_or_create(weights: 4)
+Grade.where(name: '高级').first_or_create(weights: 8)

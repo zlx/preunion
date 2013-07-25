@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724142459) do
+ActiveRecord::Schema.define(version: 20130725153349) do
 
   create_table "commits", force: true do |t|
     t.datetime "commit_date"
@@ -28,6 +28,30 @@ ActiveRecord::Schema.define(version: 20130724142459) do
     t.datetime "updated_at"
   end
 
+  create_table "grades", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "weights"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.string   "website"
+    t.text     "description"
+    t.integer  "grade_id"
+    t.integer  "user_id"
+    t.date     "started_at"
+    t.date     "finished_at"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["grade_id"], name: "index_projects_on_grade_id", using: :btree
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
   create_table "repositories", force: true do |t|
     t.string   "avatar_url"
     t.string   "description"
@@ -39,6 +63,21 @@ ActiveRecord::Schema.define(version: 20130724142459) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", id: false, force: true do |t|
+    t.integer "role_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  add_index "roles_users", ["role_id"], name: "index_roles_users_on_role_id", using: :btree
+  add_index "roles_users", ["user_id"], name: "index_roles_users_on_user_id", using: :btree
 
   create_table "settings", force: true do |t|
     t.string   "var",                   null: false

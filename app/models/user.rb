@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :current_password
 
+  belongs_to :grade
+  has_and_belongs_to_many :roles
+
   def self.find_or_create_from_auth_hash auth_hash
     @user = self.where(uid: auth_hash.uid, provider: :github).
          first_or_create(name: auth_hash.info.name,
