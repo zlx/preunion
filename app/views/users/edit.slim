@@ -5,9 +5,11 @@
 
   .inputs
     = f.input :name, label: User.human_attribute_name(:name)
+    = f.input :email, label: User.human_attribute_name(:email)
     = f.input :nickname, label: User.human_attribute_name(:nickname)
     = f.input :password, label: User.human_attribute_name(:password)
     = f.input :password_confirmation, label: User.human_attribute_name(:password_confirmation)
+    = f.input :current_password, required: true, label: User.human_attribute_name(:current_password), hint: t('current_password_hint')
 
   .form-actions
-    = f.submit t('edit_info'), class: 'btn-primary'
+    = f.submit t('edit_info'), class: 'btn btn-primary'

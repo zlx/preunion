@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
+    if @user.authenticate(user_params[:current_password]) &&
+      @user.update_attributes(user_params)
       redirect_to root_path, notice: t('edit_info_success')
     else
       redirect_to edit_user_path(@user), alert: t('edit_info_fail')
@@ -18,6 +19,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :nickname, :password, :password_confirmation)
+    params.require(:user).permit(:name, :nickname, :email, :password, :password_confirmation, :current_password)
   end
 end

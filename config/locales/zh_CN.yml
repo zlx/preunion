@@ -12,4 +12,5 @@ zh_CN:
   edit_info_success: '修改成功'
   edit_info_fail: '修改失败'
   newbie_readme: '新手入职指南'
+  current_password_hint: '任何修改都需要密码来验证你的身份'
 
