@@ -22,15 +22,16 @@ describe User do
 
   context "should calculate scores" do
     let!(:grade){ FactoryGirl.create(:grade) }
+    let!(:repository){ FactoryGirl.create(:repository) }
     let!(:user){ FactoryGirl.create(:user, score: 0) }
-    let!(:project){ FactoryGirl.create(:project, grade: grade) }
 
     before do
-      FactoryGirl.create(:commit, project: project, user_uid: user.uid)
-      FactoryGirl.create(:commit, project: project, user_uid: user.uid)
+      Setting.repo_grade = {repository.name => grade.name}
+      FactoryGirl.create(:commit, repository: repository, user_uid: user.uid)
+      FactoryGirl.create(:commit, repository: repository, user_uid: user.uid)
     end
 
-    it "score should eq commits.inject(0){(1 * commit.project.grade.weights)}" do
+    it "score should eq commits.inject(0){(1 * grade.weights)}" do
       User.calculate_scores
       expect(user.reload.score).to eq(2*1*grade.weights)
     end

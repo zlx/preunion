@@ -20,12 +20,12 @@ class User < ActiveRecord::Base
     def calculate_scores
       User.find_each do |user|
         next if user.uid.blank?
-        commits = Commit.joins(:project => :grade).where(user_uid: user.uid)
+        commits = Commit.joins(:repository).where(user_uid: user.uid)
 
         scores = commits.inject(0) do |sum, commit| 
-          weight = commit.project.grade.weights if commit.project
+          weight = Grade.where(name: Setting.repo_grade[commit.repository.name]).first.try(:weights) if commit.repository
 
-          sum += 1 * weight || 0
+          sum += 1 * (weight || 0)
         end
 
         user.update_attributes(score: scores)

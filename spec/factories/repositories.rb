@@ -8,6 +8,5 @@ FactoryGirl.define do
     name "MyString"
     starred_url "MyString"
     uid 1
-    project_id 1
   end
 end
