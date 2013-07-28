@@ -10,9 +10,9 @@ describe SessionsController do
       controller.request.env['omniauth.auth'] = {'extra' => "auth_hash"}
     end
 
-    it "should redirect_to edit_user_path(user)" do
+    it "should redirect_to edit_user_path(user) when password is default" do
       get :auth
-      expect(response).to redirect_to(edit_user_path(user))
+      expect(response).to redirect_to(users_edit_path)
     end
 
     it "should set current_user when auth success" do

@@ -9,4 +9,11 @@ class ApplicationController < ActionController::Base
     @current_user = user
     session[:user] = user.try(:id)
   end
+
+  def require_login
+    if !current_user
+      flash[:error] = t('need_authenticate')
+      redirect_to new_session_path
+    end
+  end
 end

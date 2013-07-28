@@ -32,7 +32,8 @@ namespace :github do
                                                      password_confirmation: 666666,
                                                      nickname: user.committer_email[/(.*)@/, 1], 
                                                      provider: :github, 
-                                                     github_homepage: 'https://github.com/' + user.committer_email)
+                                                     grade_id: 1,
+                                                     github_homepage: 'https://github.com/' + user.committer_email[/(.*)@/, 1])
     end
   end
 end

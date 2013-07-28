@@ -1,10 +1,12 @@
 class SessionsController < ApplicationController
-  before_action :find_user, only: [:destroy]
-
   def auth
     @user = User.find_or_create_from_auth_hash(auth_hash)
     self.current_user = @user
-    redirect_to edit_user_path(@user), notice: t('auth_success')
+    if @user.authenticate(666666)
+      redirect_to users_edit_path, notice: t('auth_success_with_notice')
+    else
+      redirect_to root_path, notice: t('auth_success')
+    end
   end
 
   def new
@@ -30,10 +32,6 @@ class SessionsController < ApplicationController
 
   def auth_hash
     request.env['omniauth.auth'].except('extra')
-  end
-
-  def find_user
-    @user ||= User.find(params[:id])
   end
 
   def user_params
