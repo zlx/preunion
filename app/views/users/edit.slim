@@ -4,8 +4,6 @@
   legend= "个人资料设置"
 
   .inputs
-    = f.input :name, label: User.human_attribute_name(:name)
-    = f.input :email, label: User.human_attribute_name(:email)
     = f.input :nickname, label: User.human_attribute_name(:nickname)
     = f.input :password, label: User.human_attribute_name(:password)
     = f.input :password_confirmation, label: User.human_attribute_name(:password_confirmation)

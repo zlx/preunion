@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name: user_params[:name])
+    @user = User.find_by(email: user_params[:email])
     if @user && @user.authenticate(user_params[:password])
       self.current_user = @user
       redirect_to root_path, notice: t('sign_in_success')
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :password)
+    params.require(:user).permit(:email, :password)
   end
 end
 #@user = User.find_by_email(params[:email])

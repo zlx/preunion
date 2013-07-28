@@ -8,7 +8,7 @@
 
 # set admin user
 role = Role.find_or_create_by(name: 'admin')
-User.where(name: 'admin', email: 'admin@example').
+User.where(email: 'admin@example').
      first_or_create(password: 'password', password_confirmation: 'password', roles: [role])
 
 # setting bay6 github username and password

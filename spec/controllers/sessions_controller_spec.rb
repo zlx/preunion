@@ -23,13 +23,12 @@ describe SessionsController do
 
   context "POST create" do
     it "should redirect_to root_path when sign_in with default password" do
-      post :create, {user: {name: user.name, password: 666666}}
-
+      post :create, {user: {email: user.email, password: 666666}}
       expect(response).to redirect_to(root_path)
     end
 
     it "should redirct_to new_session_path when sign in 777777" do
-      post :create, {user: {name: user.name, password: 777777}}
+      post :create, {user: {email: user.email, password: 777777}}
 
       expect(response).to redirect_to(new_session_path)
     end

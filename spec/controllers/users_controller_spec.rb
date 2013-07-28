@@ -7,22 +7,20 @@ describe UsersController do
   context "POST update" do
 
     it "should edit name nickname && password" do
-      post :update, {id: user.id, user: {name: 'DHH', 
-                                         nickname: 'D', 
+      post :update, {id: user.id, user: {nickname: 'D', 
                                          password: 777777, 
                                          password_confirmation: 777777, 
                                          current_password: 666666}}
 
       auser = user.reload
-      expect(auser.name).to eq('DHH')
       expect(auser.nickname).to eq('D')
       expect(auser.authenticate(777777)).to be_true
     end
 
     it "should not update anything when current password is not correct" do
-      post :update, {id: user.id, user: {name: 'DHH', 
+      post :update, {id: user.id, user: {nickname: 'DHH', 
                                          current_password: 666666}}
-      expect(user.reload.name).to eq('DHH')
+      expect(user.reload.nickname).to eq('DHH')
     end
 
     it "should not update password when password is """ do
