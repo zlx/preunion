@@ -16,6 +16,8 @@ class Project < ActiveRecord::Base
         project = Project.where(name: repo.name, user_id: user.id).
                           first_or_create(website: repo.html_url, description: repo.description, grade: Grade.where(name: grade).first)
 
+        commit.update_attributes(project_id: project.id) if commit.project_id.blank?
+
         if project.started_at.blank? || project.started_at > commit.commit_date.to_date
           project.update_attributes(started_at: commit.commit_date)
         end

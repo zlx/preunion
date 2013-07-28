@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130728001524) do
+ActiveRecord::Schema.define(version: 20130728004808) do
 
   create_table "commits", force: true do |t|
     t.datetime "commit_date"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20130728001524) do
     t.integer  "user_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_id"
   end
 
   create_table "grades", force: true do |t|
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 20130728001524) do
     t.datetime "updated_at"
     t.string   "provider"
     t.integer  "uid"
+    t.integer  "score",           default: 0
   end
 
 end

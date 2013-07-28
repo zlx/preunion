@@ -8,5 +8,7 @@ FactoryGirl.define do
     nickname "MyString"
     grade_id 1
     role_id 1
+    score 0
+    uid 12345
   end
 end

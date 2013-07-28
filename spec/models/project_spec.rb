@@ -29,5 +29,10 @@ describe Project do
       Project.init_from_commits
       subject.reload.started_at.should == longlong_ago_commit.commit_date.to_date
     end
+
+    it "should set self.project_id when find or create a project" do
+      expect(commit.reload.project_id).to eq(subject.id)
+
+    end
   end
 end

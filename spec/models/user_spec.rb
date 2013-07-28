@@ -19,4 +19,21 @@ describe User do
     it{subject.authenticate('666666').should be_true}
 
   end
+
+  context "should calculate scores" do
+    let!(:grade){ FactoryGirl.create(:grade) }
+    let!(:user){ FactoryGirl.create(:user, score: 0) }
+    let!(:project){ FactoryGirl.create(:project, grade: grade) }
+
+    before do
+      FactoryGirl.create(:commit, project: project, user_uid: user.uid)
+      FactoryGirl.create(:commit, project: project, user_uid: user.uid)
+    end
+
+    it "score should eq commits.inject(0){(1 * commit.project.grade.weights)}" do
+      User.calculate_scores
+      expect(user.reload.score).to eq(2*1*grade.weights)
+    end
+
+  end
 end
