@@ -21,4 +21,18 @@ namespace :github do
   task :calculate_scores => :environment do
     User.calculate_scores
   end
+
+  desc "init users only for development"
+  task :init_users => :environment do
+    users = Commit.select('distinct committer_email, user_uid')
+    users.each do |user|
+      next if user.user_uid.blank?
+      User.where(uid: user.user_uid).first_or_create(email: user.committer_email, 
+                                                     password: 666666, 
+                                                     password_confirmation: 666666,
+                                                     nickname: user.committer_email[/(.*)@/, 1], 
+                                                     provider: :github, 
+                                                     github_homepage: 'https://github.com/' + user.committer_email)
+    end
+  end
 end

@@ -8,6 +8,7 @@ describe User do
       @auth_hash.stub(uid: 123)
       @auth_hash.stub_chain(:info, :email => 'dhh@37signals.com')
       @auth_hash.stub_chain(:info, :nickname => 'DHH')
+      @auth_hash.stub_chain(:info, :urls, :GitHub => 'https://github.com/DHH')
     end
 
     subject{User.find_or_create_from_auth_hash(@auth_hash)}
@@ -21,12 +22,11 @@ describe User do
   end
 
   context "should calculate scores" do
-    let!(:grade){ FactoryGirl.create(:grade) }
-    let!(:repository){ FactoryGirl.create(:repository) }
+    let!(:grade){ FactoryGirl.create(:grade, name: '无业游民') }
+    let!(:repository){ FactoryGirl.create(:repository, name: 'prerequisite') }
     let!(:user){ FactoryGirl.create(:user, score: 0) }
 
     before do
-      Setting.repo_grade = {repository.name => grade.name}
       FactoryGirl.create(:commit, repository: repository, user_uid: user.uid)
       FactoryGirl.create(:commit, repository: repository, user_uid: user.uid)
     end

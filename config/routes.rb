@@ -4,6 +4,7 @@ Preunion::Application.routes.draw do
 
   resources :users
   resources :sessions
+  resources :projects
 
   root to: 'home#index'
 end

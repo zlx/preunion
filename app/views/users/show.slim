@@ -1,0 +1,12 @@
+.row
+  .span9
+    = t('on_going_projects')
+    - @user.projects.each do |project|
+      = link_to project.name, project_path(project)
+      = project.description
+  .span6
+    .basic-info
+      = link_to image_tag(@user.avatar_url), @user.github_homepage
+      = @user.nickname
+      = @user.email
+      = @user.grade_name

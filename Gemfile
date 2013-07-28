@@ -17,8 +17,8 @@ gem 'slim-rails'
 gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'octokit'
 gem 'rails-settings-cached'
-gem 'rails4_upgrade'
 gem 'redcarpet'
+gem 'lazy_high_charts'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -33,6 +33,7 @@ group :doc do
 end
 
 group :development do
+  gem 'rails4_upgrade'
   gem 'awesome_print'
   gem 'thin'
   gem 'pry-debugger'

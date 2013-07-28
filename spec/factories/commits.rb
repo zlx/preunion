@@ -12,6 +12,5 @@ FactoryGirl.define do
     author_name "MyString"
     author_email "MyString"
     user_uid 1
-    project_id 1
   end
 end

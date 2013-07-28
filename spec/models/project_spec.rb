@@ -5,11 +5,10 @@ describe Project do
   context "#init_from_commits" do
     let!(:commit) {FactoryGirl.create(:commit)}
     let!(:user) {FactoryGirl.create(:user, uid: commit.user_uid)}
-    let!(:repository) {FactoryGirl.create(:repository, id: commit.repository_id)}
+    let!(:repository) {FactoryGirl.create(:repository, id: commit.repository_id, name: 'prerequisite')}
 
     before do
-      FactoryGirl.create(:grade, name: '初级')
-      Setting.repo_grade = {repository.name => '初级'}
+      FactoryGirl.create(:grade, name: '无业游民')
       Project.init_from_commits
     end
 
@@ -28,11 +27,6 @@ describe Project do
 
       Project.init_from_commits
       subject.reload.started_at.should == longlong_ago_commit.commit_date.to_date
-    end
-
-    it "should set self.project_id when find or create a project" do
-      expect(commit.reload.project_id).to eq(subject.id)
-
     end
   end
 end

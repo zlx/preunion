@@ -7,11 +7,15 @@ class User < ActiveRecord::Base
 
   belongs_to :grade
   has_and_belongs_to_many :roles
+  has_many :projects
+
+  delegate :name, to: :grade, prefix: true, allow_nil: true
 
   class << self
     def find_or_create_from_auth_hash auth_hash
       @user = self.where(uid: auth_hash.uid, provider: :github).
         first_or_create(email: auth_hash.info.email,
+                        github_homepage: auth_hash.info.urls.GitHub,
                         password: 666666,
                         password_confirmation: 666666,
                         nickname: auth_hash.info.nickname)
@@ -31,5 +35,14 @@ class User < ActiveRecord::Base
         user.update_attributes(score: scores)
       end
     end
+  end
+
+  def avatar_url
+    gravatar_id = Digest::MD5::hexdigest(email).downcase
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=100"
+  end
+
+  def github_homepage
+    "https://github.com/" + nickname
   end
 end

@@ -10,5 +10,6 @@ FactoryGirl.define do
     role_id 1
     score 0
     uid 12345
+    github_homepage 'https://github.com/MyString'
   end
 end
