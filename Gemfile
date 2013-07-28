@@ -19,6 +19,7 @@ gem 'octokit'
 gem 'rails-settings-cached'
 gem 'redcarpet'
 gem 'lazy_high_charts'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'rspec-rails'

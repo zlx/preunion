@@ -1,12 +1,20 @@
-.row
-  .span9
-    = t('on_going_projects')
-    - @user.projects.each do |project|
-      = link_to project.name, project_path(project)
-      = project.description
+.row-fluid
   .span6
-    .basic-info
-      = link_to image_tag(@user.avatar_url), @user.github_homepage
-      = @user.nickname
-      = @user.email
-      = @user.grade_name
+    h2= t('on_going_projects')
+    - @user.projects.each do |project|
+      .well
+        h3= link_to project.name, project_path(project)
+        = project.description
+  .span3.pull-right
+    ul.nav.nav-list.basic-info.unstyled.well
+      .text-center= link_to image_tag(@user.avatar_url, class: 'img-rounded'), @user.github_homepage
+      hr
+      li
+        em.icon-user
+        = @user.nickname
+      li
+        em.icon-envelope
+        = @user.email
+      li
+        em.icon-arrow-up
+        = @user.grade_name
