@@ -40,4 +40,9 @@ class User < ActiveRecord::Base
     gravatar_id = Digest::MD5::hexdigest(email).downcase
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=100"
   end
+
+  def graph_commits(days = 7)
+    @sizes ||= Commit.where(user_uid: uid).where("commit_date > ?", days.days.ago).group('DATE(commit_date)').size
+    (0..days).to_a.inject({}){|a, s| v = s.days.ago.to_date; a[v.to_s(:db)] = @sizes[v]||0; a}
+  end
 end

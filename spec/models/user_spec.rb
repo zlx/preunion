@@ -37,4 +37,26 @@ describe User do
     end
 
   end
+
+  context "should return commits data for graph" do
+    let!(:user) {FactoryGirl.create(:user)}
+    before do
+      FactoryGirl.create(:commit, commit_date: 2.days.ago, user_uid: user.uid)
+      FactoryGirl.create(:commit, commit_date: 3.days.ago, user_uid: user.uid)
+      FactoryGirl.create(:commit, commit_date: 2.days.ago, user_uid: user.uid)
+    end
+
+    subject { user.graph_commits }
+
+    it{should be_a_kind_of(Hash)}
+    its(:length){should == 8}
+    it{subject[2.days.ago.to_date.to_s(:db)].should == 2}
+    it{subject[3.days.ago.to_date.to_s(:db)].should == 1}
+    it{subject[1.days.ago.to_date.to_s(:db)].should == 0}
+
+    it "should return more result when pass days" do
+      expect(user.graph_commits(100).length).to eq 100 + 1
+    end
+
+  end
 end

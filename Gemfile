@@ -18,7 +18,7 @@ gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'octokit'
 gem 'rails-settings-cached'
 gem 'redcarpet'
-gem 'lazy_high_charts'
+gem 'lazy_high_charts', github: 'michelson/lazy_high_charts'
 gem 'bootstrap-sass'
 
 group :development, :test do

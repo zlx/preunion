@@ -2,6 +2,15 @@ class UsersController < ApplicationController
   before_action :find_user, except: [:edit]
   before_action :require_login, only: [:edit]
 
+  def show
+    data = @user.graph_commits
+    @graph = LazyHighCharts::HighChart.new('column') do |f|
+      f.chart(type: 'column')
+      f.xAxis(categories: data.keys.reverse)
+      f.series(name: @user.nickname, data: data.values)
+    end
+  end
+
   def edit
     @user = current_user
   end
