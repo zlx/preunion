@@ -8,11 +8,11 @@ table.table.table-hover
     th= sortable "week_score", User.human_attribute_name(:week_score)
     th= User.human_attribute_name(:first_commit)
 
-  - id = 0
+  - id = (@page.to_i - 1)*20 + 0
   - @users.each do |user|
     tr
       td= id += 1
-      td= user.nickname
+      td= link_to user.nickname, user_path(user)
       td= user.grade_name
       td= user.score
       td= user.month_score

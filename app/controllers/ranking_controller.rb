@@ -2,7 +2,8 @@ class RankingController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @users = User.order(sort_column + " " + sort_direction).page(params[:page]).per(20)
+    @page = params[:page] || 1
+    @users = User.order(sort_column + " " + sort_direction).page(@page).per(20)
   end
 
   private
