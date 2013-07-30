@@ -16,4 +16,5 @@ zh_CN:
   current_password_hint: '任何修改都需要密码来验证你的身份'
   need_authenticate: '请先登录'
   ranking: '得分排名'
+  not_exist: '不存在'
 

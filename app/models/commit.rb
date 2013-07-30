@@ -1,6 +1,7 @@
 class Commit < ActiveRecord::Base
   belongs_to :repository
   belongs_to :project
+  belongs_to :user, foreign_key: :user_uid, primary_key: :uid
 
   class << self
     def fetch_bay6_commits

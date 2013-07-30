@@ -59,4 +59,23 @@ describe User do
     end
 
   end
+
+  it "should return ranking by score" do
+    user1 = FactoryGirl.create(:user, score: 100)
+    user2 = FactoryGirl.create(:user, score: 100)
+    user3 = FactoryGirl.create(:user, score: 200)
+
+    expect(user2.ranking).to eq 3
+  end
+
+  context "should return data or nil" do
+    let!(:user){FactoryGirl.create(:user)}
+
+    its(:first_commit){should be_nil}
+
+    it "should return a Time" do
+      commit = FactoryGirl.create(:commit, user: user)
+      expect(user.first_commit).to be_a_kind_of(Time)
+    end
+  end
 end

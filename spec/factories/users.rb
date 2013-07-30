@@ -5,7 +5,7 @@ FactoryGirl.define do
     sequence(:email){|n| "MyString@#{n}"}
     password 666666
     password_confirmation 666666
-    nickname "MyString"
+    sequence(:nickname){|n| "MyString#{n}"}
     grade_id 1
     role_id 1
     score 0

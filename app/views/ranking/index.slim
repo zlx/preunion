@@ -16,6 +16,6 @@ table.table.table-hover
       td= user.score
       td= user.month_score
       td= user.week_score
-      td= user.first_commit.to_s(:db) || 'not_exist'
+      td= user.first_commit.to_s(:db) || t('not_exist')
 = paginate @users
 
