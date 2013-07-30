@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130728022143) do
+ActiveRecord::Schema.define(version: 20130730012817) do
 
   create_table "commits", force: true do |t|
     t.datetime "commit_date"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(version: 20130728022143) do
     t.integer  "uid"
     t.integer  "score",           default: 0
     t.string   "github_homepage"
+    t.integer  "month_score",     default: 0
+    t.integer  "week_score",      default: 0
   end
 
 end

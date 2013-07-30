@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   belongs_to :grade
   has_and_belongs_to_many :roles
   has_many :projects
+  has_many :commits, foreign_key: :user_uid, primary_key: :uid
 
   delegate :name, to: :grade, prefix: true, allow_nil: true
 
@@ -44,5 +45,13 @@ class User < ActiveRecord::Base
   def graph_commits(days = 7)
     @sizes ||= Commit.where(user_uid: uid).where("commit_date > ?", days.days.ago).group('DATE(commit_date)').size
     (0..days).to_a.inject({}){|a, s| v = s.days.ago.to_date; a[v.to_s(:db)] = @sizes[v]||0; a}
+  end
+
+  def first_commit
+    commits.present? ? commits.first.commit_date : nil
+  end
+
+  def ranking
+    1
   end
 end

@@ -1,0 +1,20 @@
+.table.table-hover
+  tr
+    th= 'ranking'
+    th= 'nickname'
+    th= 'grade'
+    th= 'total_score'
+    th= 'month_score'
+    th= 'week_score'
+    th= 'first_commit'
+
+  - @users.each do |user|
+    tr
+      td= user.ranking
+      td= user.nickname
+      td= user.grade_name
+      td= user.score
+      td= user.month_score
+      td= user.week_score
+      td= user.first_commit.to_s(:db) || 'not_exist'
+
