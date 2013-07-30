@@ -29,9 +29,9 @@ union将划分为不同等级小任务，反复练习重构后会重写到主uni
 ## 如何贡献
 
 1. Fork it
-2. Create your feature branch (git checkout -b my-new-feature)
 3. `cp config/database.yml.example config/database.yml`
 4. `cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb`
-5. Commit your changes (git commit -am 'Add some feature')
-6. Push to the branch (git push origin my-new-feature)
-7. Create new Pull Request
+
+## 跑测试
+
+`rake spec`
