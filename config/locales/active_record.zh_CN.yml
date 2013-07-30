@@ -10,3 +10,9 @@ zh_CN:
         password: "密码"
         password_confirmation: "确认密码"
         current_password: '当前密码'
+        ranking: '排名'
+        grade: '等级'
+        total_score: "总分"
+        month_score: "月得分"
+        week_score: "周得分"
+        first_commit: "第一次提交"

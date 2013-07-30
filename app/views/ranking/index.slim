@@ -1,12 +1,12 @@
-.table.table-hover
+table.table.table-hover
   tr
-    th= 'ranking'
-    th= 'nickname'
-    th= 'grade'
-    th= 'total_score'
-    th= 'month_score'
-    th= 'week_score'
-    th= 'first_commit'
+    th= User.human_attribute_name(:ranking)
+    th= User.human_attribute_name(:nickname)
+    th= User.human_attribute_name(:grade)
+    th= User.human_attribute_name(:total_score)
+    th= User.human_attribute_name(:month_score)
+    th= User.human_attribute_name(:week_score)
+    th= User.human_attribute_name(:first_commit)
 
   - @users.each do |user|
     tr
@@ -17,4 +17,5 @@
       td= user.month_score
       td= user.week_score
       td= user.first_commit.to_s(:db) || 'not_exist'
+= paginate @users
 

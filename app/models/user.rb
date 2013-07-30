@@ -26,15 +26,28 @@ class User < ActiveRecord::Base
         next if user.uid.blank?
         commits = Commit.joins(:repository).where(user_uid: user.uid)
 
-        scores = commits.inject(0) do |sum, commit| 
-          weight = Grade.where(name: Setting.repo_grade[commit.repository.name]).first.try(:weights) if commit.repository
-
-          sum += 1 * (weight || 0)
-        end
-
-        user.update_attributes(score: scores)
+        user.update_attributes(score: get_scores(commits),
+                               month_score: get_scores(commits.where("commit_date < ?", 1.month.ago)),
+                               week_score: get_scores(commits.where("commit_date < ?", 1.week.ago)))
       end
     end
+
+    def get_scores commits
+      commits.inject(0) do |sum, commit| 
+        weight = Grade.where(name: Setting.repo_grade[commit.repository.name]).first.try(:weights) if commit.repository
+
+        sum += 1 * (weight || 0)
+      end
+    end
+
+  end
+
+  def ranking
+    @ranking ||= begin
+                   higher_count = User.where("score > ?", self.score).count
+                   equal_count = User.where(score: self.score).where("id < ?", self.id).count
+                   higher_count + equal_count + 1
+                 end
   end
 
   def avatar_url
@@ -49,9 +62,5 @@ class User < ActiveRecord::Base
 
   def first_commit
     commits.present? ? commits.first.commit_date : nil
-  end
-
-  def ranking
-    1
   end
 end

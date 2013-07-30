@@ -7,7 +7,8 @@ Preunion::Application.routes.draw do
   resources :users, except: [:edit]
   resources :sessions, except: [:destroy]
   resources :projects
-  resources :ranking, only: [:index]
+
+  get 'ranking', to: 'ranking#index', as: :ranking
 
   root to: 'home#index'
 end

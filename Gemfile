@@ -20,6 +20,7 @@ gem 'rails-settings-cached'
 gem 'redcarpet'
 gem 'lazy_high_charts', github: 'michelson/lazy_high_charts'
 gem 'bootstrap-sass'
+gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails'
