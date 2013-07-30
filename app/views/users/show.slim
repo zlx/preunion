@@ -3,7 +3,7 @@
     h2= t('on_going_projects')
     - @user.projects.each do |project|
       .well
-        h3= link_to project.name, project_path(project)
+        h3= link_to project.name, github_url(project.name)
         = project.description
   .span3.pull-right
     ul.nav.nav-list.basic-info.unstyled.well
