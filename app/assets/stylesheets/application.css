@@ -23,3 +23,16 @@ body {
   margin: 0 auto;
 }
 
+.table th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.table th .asc {
+  background-image: url("/assets/down.gif");
+}
+
+.table th .desc {
+  background-image: url("/assets/up.gif");
+}

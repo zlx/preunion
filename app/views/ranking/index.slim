@@ -1,16 +1,17 @@
 table.table.table-hover
   tr
-    th= User.human_attribute_name(:ranking)
-    th= User.human_attribute_name(:nickname)
-    th= User.human_attribute_name(:grade)
-    th= User.human_attribute_name(:total_score)
-    th= User.human_attribute_name(:month_score)
-    th= User.human_attribute_name(:week_score)
+    th ID
+    th= sortable "nickname", User.human_attribute_name(:nickname)
+    th= sortable "grade_id", User.human_attribute_name(:grade)
+    th= sortable "score", User.human_attribute_name(:total_score)
+    th= sortable "month_score", User.human_attribute_name(:month_score)
+    th= sortable "week_score", User.human_attribute_name(:week_score)
     th= User.human_attribute_name(:first_commit)
 
+  - id = 0
   - @users.each do |user|
     tr
-      td= user.ranking
+      td= id += 1
       td= user.nickname
       td= user.grade_name
       td= user.score
